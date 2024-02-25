@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Description</title>
+    <style>
+        .description {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 5px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hover over the words for description</h1>
+    <p>Hover over <span class="hoverable" title="This is a description for the word 1.">word 1</span> for description.</p>
+    <p>Hover over <span class="hoverable" title="This is a description for the word 2.">word 2</span> for description.</p>
+    <p>Hover over <span class="hoverable" title="This is a description for the word 3.">word 3</span> for description.</p>
+
+    <div id="description-box" class="description"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const hoverables = document.querySelectorAll('.hoverable');
+
+            hoverables.forEach(element => {
+                element.addEventListener('mouseover', function(event) {
+                    const descriptionBox = document.getElementById('description-box');
+                    descriptionBox.innerText = element.getAttribute('title');
+                    descriptionBox.style.display = 'block';
+                    descriptionBox.style.left = event.pageX + 'px';
+                    descriptionBox.style.top = event.pageY + 'px';
+                });
+
+                element.addEventListener('mouseout', function() {
+                    const descriptionBox = document.getElementById('description-box');
+                    descriptionBox.style.display = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

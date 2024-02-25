@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -9,6 +9,10 @@ pdf_files = {
     "example.pdf": "This is the content of example.pdf",
     "sample.pdf": "This is the content of sample.pdf"
 }
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/memos', methods=['GET'])
 def get_memos():
